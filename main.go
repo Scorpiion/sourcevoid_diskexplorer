@@ -3,23 +3,23 @@ package main
 import (
 	"crypto/rand"
 	"encoding/base64"
-	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
 	// Generate secret path with 144 bits of entropy
 	var entropy [18]byte
-	fmt.Println("Generating secret path...")
+	log.Println("Generating secret path...")
 	if _, err := rand.Read(entropy[:]); err != nil {
 		log.Fatalln("Could not generate path:", err.Error())
 	}
 	path := "/" + base64.URLEncoding.EncodeToString(entropy[:]) + "/"
-	fmt.Println("Done.")
-	fmt.Println("Open your browser at: " + os.Getenv("APP_URL") + path)
-	fmt.Println("---")
-	fmt.Println("\n")
+	log.Println("Done.")
+	log.Println("Open your browser at: " + os.Getenv("APP_URL") + path)
+	log.Println("---")
+	log.Println("\n")
 	
 	// Serve filesystem at secret path
 	http.Handle(path, http.StripPrefix(path, http.FileServer(http.Dir("/"))))
