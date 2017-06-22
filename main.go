@@ -17,6 +17,7 @@ func main() {
 	}
 	path := "/" + base64.URLEncoding.EncodeToString(entropy[:]) + "/"
 	fmt.Printf("The path is: xxx.sourcevoid.net%s", path)
+	fmt.Println("")
 	fmt.Println("\n")
 	
 	// Serve filesystem at secret path
