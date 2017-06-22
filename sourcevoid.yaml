@@ -1,0 +1,6 @@
+runtime: go
+
+build: 
+  - go build -o out
+
+start: ./out
