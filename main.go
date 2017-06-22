@@ -25,7 +25,7 @@ func main() {
 	log.Println("")
 	
 	// Serve filesystem at secret path
-	http.Handle(path, http.StripPrefix(path, http.FileServer(http.Dir("/"))))
+	http.Handle(path, http.StripPrefix(path, http.FileServer(http.Dir("/home/cuser"))))
 	err := http.ListenAndServe(":8080", nil)
 	if(err != nil) {
 		log.Println(err)
