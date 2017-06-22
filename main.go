@@ -16,10 +16,12 @@ func main() {
 		log.Fatalln("Could not generate path:", err.Error())
 	}
 	path := "/" + base64.URLEncoding.EncodeToString(entropy[:]) + "/"
-	log.Println("Done.")
+
 	log.Println("Open your browser at: " + os.Getenv("APP_URL") + path)
-	log.Println("---")
-	log.Println("\n")
+	
+	// Temp fix for logging bug
+	time.Sleep(time.Second * 1)
+	log.Println("")
 	
 	// Serve filesystem at secret path
 	http.Handle(path, http.StripPrefix(path, http.FileServer(http.Dir("/"))))
